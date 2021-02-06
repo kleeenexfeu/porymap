@@ -46,7 +46,6 @@ QString ParseUtil::readTextFile(QString path) {
         return QString();
     }
     QTextStream in(&file);
-    in.setCodec("UTF-8");
     QString text = "";
     while (!in.atEnd()) {
         text += in.readLine() + "\n";
@@ -73,12 +72,11 @@ QList<QStringList>* ParseUtil::parseAsm(QString filename) {
             // gas will raise a syntax error if there is.
         } else {
             line = line.trimmed();
-            //parsed->append(line.split(QRegExp("\\s*,\\s*")));
             QString macro;
             QStringList params;
-            int index = line.indexOf(QRegExp("\\s+"));
+            int index = line.indexOf(QRegularExpression("\\s+"));
             macro = line.left(index);
-            params = line.right(line.length() - index).trimmed().split(QRegExp("\\s*,\\s*"));
+            params = line.right(line.length() - index).trimmed().split(QRegularExpression("\\s*,\\s*"));
             params.prepend(macro);
             parsed->append(params);
         }
@@ -238,15 +236,16 @@ QString ParseUtil::readCIncbin(QString filename, QString label) {
 
     text = readTextFile(root + "/" + filename);
 
-    QRegExp *re = new QRegExp(QString(
+    QRegularExpression re(QString(
         "\\b%1\\b"
         "\\s*\\[?\\s*\\]?\\s*=\\s*"
         "INCBIN_[US][0-9][0-9]?"
         "\\(\\s*\"([^\"]*)\"\\s*\\)").arg(label));
 
-    int pos = re->indexIn(text);
+    QRegularExpressionMatch match;
+    qsizetype pos = text.indexOf(re, 0, &match);
     if (pos != -1) {
-        path = re->cap(1);
+        path = match.captured(1);
     }
 
     return path;

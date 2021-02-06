@@ -409,7 +409,7 @@ void MainWindow::on_lineEdit_filterBox_textChanged(const QString &arg1)
 
 void MainWindow::applyMapListFilter(QString filterText)
 {
-    mapListProxyModel->setFilterRegExp(QRegExp(filterText, Qt::CaseInsensitive, QRegExp::FixedString));
+    mapListProxyModel->setFilterRegularExpression(QRegularExpression(filterText, QRegularExpression::CaseInsensitiveOption));
     if (filterText.isEmpty()) {
         ui->mapList->collapseAll();
     } else {
@@ -613,7 +613,7 @@ bool MainWindow::setMap(QString map_name, bool scrollTreeView) {
 
     if (scrollTreeView) {
         // Make sure we clear the filter first so we actually have a scroll target
-        mapListProxyModel->setFilterRegExp(QString());
+        mapListProxyModel->setFilterRegularExpression(QString());
         ui->mapList->setCurrentIndex(mapListProxyModel->mapFromSource(mapListIndexes.value(map_name)));
         ui->mapList->scrollTo(ui->mapList->currentIndex(), QAbstractItemView::PositionAtCenter);
     }
@@ -1691,7 +1691,7 @@ void MainWindow::updateSelectedObjects() {
         connect(item, SIGNAL(yChanged(int)), y, SLOT(setValue(int)));
 
         z->setValue(item->event->elevation());
-        connect(z, SIGNAL(valueChanged(QString)), item, SLOT(set_elevation(QString)));
+        connect(z, SIGNAL(textChanged(QString)), item, SLOT(set_elevation(QString)));
         connect(item, SIGNAL(elevationChanged(int)), z, SLOT(setValue(int)));
 
         QString event_type = item->event->get("event_type");
@@ -2472,7 +2472,7 @@ void MainWindow::showExportMapImageWindow(ImageExporterMode mode) {
     }
 }
 
-void MainWindow::on_comboBox_ConnectionDirection_currentIndexChanged(const QString &direction)
+void MainWindow::on_comboBox_ConnectionDirection_currentTextChanged(const QString &direction)
 {
     editor->updateCurrentConnectionDirection(direction);
 }

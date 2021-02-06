@@ -348,7 +348,9 @@ void MapPixmapItem::updateMetatileSelection(QGraphicsSceneMouseEvent *event) {
             metatiles.append(map->getBlock(x, y)->tile);
             int blockIndex = y * map->getWidth() + x;
             Block block = map->layout->blockdata->blocks->at(blockIndex);
-            collisions.append(QPair<uint16_t, uint16_t>(block.collision, block.elevation));
+            auto collision = block.collision;
+            auto elevation = block.elevation;
+            collisions.append(QPair<uint16_t, uint16_t>(collision, elevation));
         }
 
         this->metatileSelector->setExternalSelection(x2 - x1 + 1, y2 - y1 + 1, metatiles, collisions);
