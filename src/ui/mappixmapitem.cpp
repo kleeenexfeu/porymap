@@ -412,7 +412,6 @@ void MapPixmapItem::magicFill(
     Block *block = map->getBlock(initialX, initialY);
     if (block) {
         if (selectedMetatiles->length() == 1 && selectedMetatiles->value(0) == block->tile) {
-            logInfo("early exit");
             return;
         }
 
