@@ -40,21 +40,26 @@ jobs:
 
       - uses: actions/upload-artifact@v2
         with:
-          name: porymap_built
+          name: porymap_built1
           path: /porymap.exe
 
       - uses: actions/upload-artifact@v2
         with:
-          name: porymap_built
+          name: porymap_built2
           path: /porymap
 
       - uses: actions/upload-artifact@v2
         with:
-          name: porymap_built
+          name: porymap_built3
           path: /
   
       - uses: actions/upload-artifact@v2
         with:
-          name: porymap_built
+          name: porymap_built4
           path: /porymap/porymap.exe
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: porymap_built5
+          path: ./
 
