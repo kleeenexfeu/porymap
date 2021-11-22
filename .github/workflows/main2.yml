@@ -32,35 +32,65 @@ jobs:
       - name: Compile
         run: make
 
+    #  - uses: actions/upload-artifact@v2
+    #    with:
+    #      name: porymap_built
+    #      path: ./porymap.exe
+    # can"t find file
+    
       - uses: actions/upload-artifact@v2
         with:
           name: porymap_built
-          path: ./porymap.exe
-
-
+          path: ./porymap
+          
       - uses: actions/upload-artifact@v2
         with:
           name: porymap_built1
-          path: /porymap.exe
+          path: ./porymap/porymap.exe
 
       - uses: actions/upload-artifact@v2
         with:
           name: porymap_built2
-          path: /porymap
+          path: ././porymap
+          
+      - uses: actions/upload-artifact@v2
+        with:
+          name: porymap_built3
+          path: ././porymap.exe
+          
+      - uses: actions/upload-artifact@v2
+        with:
+          name: porymap_built4
+          path: ././porymap/porymap.exe
 
+
+    #  - uses: actions/upload-artifact@v2
+    #    with:
+    #      name: porymap_built1
+    #      path: /porymap.exe
+    # can't find file
+
+    #  - uses: actions/upload-artifact@v2
+    #    with:
+    #      name: porymap_built2
+    #      path: /porymap
+    # Can't find file
+    
     #  - uses: actions/upload-artifact@v2
     #    with:
     #      name: porymap_built3
     #      path: /
     # Makes job fail and can't access this
   
-      - uses: actions/upload-artifact@v2
-        with:
-          name: porymap_built4
-          path: /porymap/porymap.exe
+    #  - uses: actions/upload-artifact@v2
+    #    with:
+    #      name: porymap_built4
+    #      path: /porymap/porymap.exe
+    # can't find file
 
-      - uses: actions/upload-artifact@v2
-        with:
-          name: porymap_built5
-          path: ./
+    #  - uses: actions/upload-artifact@v2
+    #    with:
+    #      name: porymap_built5
+    #      path: ./
+    # can't find file
 
