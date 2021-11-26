@@ -41,13 +41,18 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: porymap_built
-          path: /Users/runner/work/porymap/porymap.exe
+          path: build/porymap/porymap.exe
           
     #  - uses: actions/upload-artifact@v2
     #    with:
     #      name: porymap_built1
     #      path: ./porymap/porymap.exe
     # directory doesn't exist, break the job
+    
+    #  - uses: actions/upload-artifact@v2
+    #    with:
+    #      name: porymap_built1
+    #      path: /Users/runner/work/porymap/porymap.exe
 
     #  - uses: actions/upload-artifact@v2
     #    with:
